@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Tasbih</title>
+</head>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+        
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    }
+    .heading{
+        text-align: center;
+        color:darkcyan;
+        font-size: 50px;
+        margin-top: 20px;
+    }
+
+    h3{
+        font-size: 20px;
+    }
+
+    .clock{
+        text-align: center;
+        padding: 20px;
+        font-size: 30px;
+    }
+
+    .dua-counter-container{
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 30px;
+        margin-top: 20px;
+    }
+
+    .btn-primary{
+        padding: 7px 10px;
+        margin-top: 10px;
+        border-radius: 5px;
+        font-size: 18px;
+        color: azure;
+    }
+
+    .count{
+        background-color: darkgreen;
+    }
+
+    .reset{
+        background-color: darkred;
+    }
+
+    .dc-count{
+        background-color: azure;
+        padding: 5px;
+        border-radius: 5px;
+        font-size: 24px; 
+    }
+    
+    .dc{
+        border-radius: 10px;
+        padding: 10px;
+        margin-bottom: 15px;
+    }
+
+    .dua-counter-1{
+        background-color:coral !important;
+        
+    }
+
+    .dua-counter-2{
+        background-color:darksalmon !important; 
+        
+    }
+
+    .dua-counter-3{
+        background-color:deepskyblue !important; 
+        
+    }
+</style>
+<body>
+    <h1 class="heading">Digital Tasbih</h1>
+    <div class="clock">
+        <span id="hours">00</span>:<span id="minutes">00</span>:<span id="seconds">00</span>
+    </div>
+    <div class="dua-counter-container">
+        <div class="dc dua-counter-1">
+            <h3 style="padding: 5px;">Ahamdulillah</h3>
+            <p class="dc-count" id="dc1-count">0</p>
+            <button class="btn-primary reset" type="submit" id="dc1-r-btn">Reset</button>
+            <button class="btn-primary count" type="submit" id="dc1-c-btn">Count</button>
+        </div>
+        <div class="dc dua-counter-2">
+            <h3 style="padding: 5px;">Subhanallah</h3>
+            <p class="dc-count" id="dc2-count">0</p>
+            <button class="btn-primary reset" type="submit" id="dc2-r-btn">Reset</button>
+            <button class="btn-primary count" type="submit" id="dc2-c-btn">Count</button>
+        </div>
+        <div class="dc dua-counter-3">
+            <h3 style="padding: 5px;">Allahu Akbar</h3>
+            <p class="dc-count" id="dc3-count">0</p>
+            <button class="btn-primary reset" type="submit" id="dc3-r-btn">Reset</button>
+            <button class="btn-primary count" type="submit" id="dc3-c-btn">Count</button>
+        </div>
+    </div> 
+    <script>
+        let count1 = 0;
+        let count2 = 0;
+        let count3 = 0;
+        document.getElementById('dc1-c-btn').addEventListener("click", function(){
+            document.getElementById('dc1-count').innerHTML = ++count1;
+        });
+        document.getElementById('dc1-r-btn').addEventListener("click", function(){
+            count1 = 0;
+            document.getElementById('dc1-count').innerHTML = count1;
+        });
+
+        document.getElementById('dc2-c-btn').addEventListener("click", function(){
+            document.getElementById('dc2-count').innerHTML = ++count2;
+        });
+        document.getElementById('dc2-r-btn').addEventListener("click", function(){
+            count2 = 0;
+            document.getElementById('dc2-count').innerHTML = count2;
+        });
+
+        document.getElementById('dc3-c-btn').addEventListener("click", function(){
+            document.getElementById('dc3-count').innerHTML = ++count3;
+        });
+        document.getElementById('dc3-r-btn').addEventListener("click", function(){
+            count3 = 0;
+            document.getElementById('dc3-count').innerHTML = count3;
+        });
+
+        function updateClock() {
+            const now = new Date();
+            const hours = String(now.getHours()).padStart(2, '0');
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            const seconds = String(now.getSeconds()).padStart(2, '0');
+
+            document.getElementById('hours').textContent = hours;
+            document.getElementById('minutes').textContent = minutes;
+            document.getElementById('seconds').textContent = seconds;
+        }
+        // Update the clock every second
+        setInterval(updateClock, 1000);
+
+        // Initialize the clock immediately
+        updateClock();
+    </script>
+</body>
+</html>
